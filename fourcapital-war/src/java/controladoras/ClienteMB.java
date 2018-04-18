@@ -5,7 +5,6 @@
  */
 package controladoras;
 
-import clienteRest.ClienteREST;
 import com.google.gson.reflect.TypeToken;
 import conexion.ConexionHTTP;
 import entities.Cliente;
@@ -13,12 +12,8 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
-import static javafx.scene.input.KeyCode.T;
 import javax.faces.event.ActionEvent;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.GenericType;
 
 /**
  *
