@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -115,7 +116,7 @@ public class Deuda implements Serializable {
     public void setProducto(String producto) {
         this.producto = producto;
     }
-
+    @JsonbTransient
     public Cliente getCliente() {
         return cliente;
     }
