@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -116,7 +117,7 @@ public class Solicitud implements Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
+    @JsonbTransient
     public Cliente getClienteIdcliente() {
         return clienteIdcliente;
     }
