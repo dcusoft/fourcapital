@@ -61,7 +61,7 @@ public class Cliente implements Serializable {
     private String tipo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<Deuda> deudaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clienteIdcliente")
     private List<Solicitud> solicitudList;
 
     public Cliente() {

@@ -6,9 +6,12 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -26,18 +29,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Solicitud.findAll", query = "SELECT s FROM Solicitud s")
-    , @NamedQuery(name = "Solicitud.findByIdsolicitud", query = "SELECT s FROM Solicitud s WHERE s.solicitudPK.idsolicitud = :idsolicitud")
+    , @NamedQuery(name = "Solicitud.findByIdsolicitud", query = "SELECT s FROM Solicitud s WHERE s.idsolicitud = :idsolicitud")
     , @NamedQuery(name = "Solicitud.findByNombre", query = "SELECT s FROM Solicitud s WHERE s.nombre = :nombre")
     , @NamedQuery(name = "Solicitud.findByDireccion", query = "SELECT s FROM Solicitud s WHERE s.direccion = :direccion")
     , @NamedQuery(name = "Solicitud.findByCorreo", query = "SELECT s FROM Solicitud s WHERE s.correo = :correo")
     , @NamedQuery(name = "Solicitud.findByTelefono", query = "SELECT s FROM Solicitud s WHERE s.telefono = :telefono")
-    , @NamedQuery(name = "Solicitud.findByEstado", query = "SELECT s FROM Solicitud s WHERE s.estado = :estado")
-    , @NamedQuery(name = "Solicitud.findByClienteIdcliente", query = "SELECT s FROM Solicitud s WHERE s.solicitudPK.clienteIdcliente = :clienteIdcliente")})
+    , @NamedQuery(name = "Solicitud.findByEstado", query = "SELECT s FROM Solicitud s WHERE s.estado = :estado")})
 public class Solicitud implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected SolicitudPK solicitudPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idsolicitud")
+    private Integer idsolicitud;
     @Size(max = 45)
     @Column(name = "nombre")
     private String nombre;
@@ -53,27 +58,23 @@ public class Solicitud implements Serializable {
     @Size(max = 45)
     @Column(name = "estado")
     private String estado;
-    @JoinColumn(name = "cliente_idcliente", referencedColumnName = "idcliente", insertable = false, updatable = false)
+    @JoinColumn(name = "cliente_idcliente", referencedColumnName = "idcliente")
     @ManyToOne(optional = false)
-    private Cliente cliente;
+    private Cliente clienteIdcliente;
 
     public Solicitud() {
     }
 
-    public Solicitud(SolicitudPK solicitudPK) {
-        this.solicitudPK = solicitudPK;
+    public Solicitud(Integer idsolicitud) {
+        this.idsolicitud = idsolicitud;
     }
 
-    public Solicitud(int idsolicitud, int clienteIdcliente) {
-        this.solicitudPK = new SolicitudPK(idsolicitud, clienteIdcliente);
+    public Integer getIdsolicitud() {
+        return idsolicitud;
     }
 
-    public SolicitudPK getSolicitudPK() {
-        return solicitudPK;
-    }
-
-    public void setSolicitudPK(SolicitudPK solicitudPK) {
-        this.solicitudPK = solicitudPK;
+    public void setIdsolicitud(Integer idsolicitud) {
+        this.idsolicitud = idsolicitud;
     }
 
     public String getNombre() {
@@ -116,18 +117,18 @@ public class Solicitud implements Serializable {
         this.estado = estado;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public Cliente getClienteIdcliente() {
+        return clienteIdcliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setClienteIdcliente(Cliente clienteIdcliente) {
+        this.clienteIdcliente = clienteIdcliente;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (solicitudPK != null ? solicitudPK.hashCode() : 0);
+        hash += (idsolicitud != null ? idsolicitud.hashCode() : 0);
         return hash;
     }
 
@@ -138,7 +139,7 @@ public class Solicitud implements Serializable {
             return false;
         }
         Solicitud other = (Solicitud) object;
-        if ((this.solicitudPK == null && other.solicitudPK != null) || (this.solicitudPK != null && !this.solicitudPK.equals(other.solicitudPK))) {
+        if ((this.idsolicitud == null && other.idsolicitud != null) || (this.idsolicitud != null && !this.idsolicitud.equals(other.idsolicitud))) {
             return false;
         }
         return true;
@@ -146,7 +147,7 @@ public class Solicitud implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Solicitud[ solicitudPK=" + solicitudPK + " ]";
+        return "entities.Solicitud[ idsolicitud=" + idsolicitud + " ]";
     }
     
 }
