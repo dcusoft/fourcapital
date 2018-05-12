@@ -5,7 +5,6 @@
  */
 package dto;
 
-import entities.*;
 import java.util.List;
 
 /**
@@ -28,9 +27,9 @@ public class ClienteDTO {
    
     private String tipo;
    
-    private List<Deuda> deudaList;
+    private List<DeudaDTO> deudaList;
    
-    private List<Solicitud> solicitudList;
+    private List<SolicitudDTO> solicitudList;
 
     public Integer getIdcliente() {
         return idcliente;
@@ -80,19 +79,19 @@ public class ClienteDTO {
         this.tipo = tipo;
     }
 
-    public List<Deuda> getDeudaList() {
+    public List<DeudaDTO> getDeudaList() {
         return deudaList;
     }
 
-    public void setDeudaList(List<Deuda> deudaList) {
+    public void setDeudaList(List<DeudaDTO> deudaList) {
         this.deudaList = deudaList;
     }
 
-    public List<Solicitud> getSolicitudList() {
+    public List<SolicitudDTO> getSolicitudList() {
         return solicitudList;
     }
 
-    public void setSolicitudList(List<Solicitud> solicitudList) {
+    public void setSolicitudList(List<SolicitudDTO> solicitudList) {
         this.solicitudList = solicitudList;
     }
 

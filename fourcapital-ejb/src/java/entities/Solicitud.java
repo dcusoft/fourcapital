@@ -6,7 +6,6 @@
 package entities;
 
 import java.io.Serializable;
-import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -44,20 +42,20 @@ public class Solicitud implements Serializable {
     @Basic(optional = false)
     @Column(name = "idsolicitud")
     private Integer idsolicitud;
-    @Size(max = 45)
-    @Column(name = "nombre")
+//    @Size(max = 100)
+    @Column(name = "nombre", length = 100)
     private String nombre;
-    @Size(max = 45)
-    @Column(name = "direccion")
+//    @Size(max = 100)
+    @Column(name = "direccion", length = 100)
     private String direccion;
-    @Size(max = 45)
-    @Column(name = "correo")
+//    @Size(max = 100)
+    @Column(name = "correo", length = 100)
     private String correo;
-    @Size(max = 45)
-    @Column(name = "telefono")
+//    @Size(max = 45)
+    @Column(name = "telefono", length = 45)
     private String telefono;
-    @Size(max = 45)
-    @Column(name = "estado")
+//    @Size(max = 45)
+    @Column(name = "estado", length = 45)
     private String estado;
     @JoinColumn(name = "cliente_idcliente", referencedColumnName = "idcliente")
     @ManyToOne(optional = false)
@@ -117,7 +115,8 @@ public class Solicitud implements Serializable {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    @JsonbTransient
+    
+    
     public Cliente getClienteIdcliente() {
         return clienteIdcliente;
     }

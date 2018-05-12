@@ -41,23 +41,23 @@ public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "idcliente")
+//    @NotNull
+    @Column(name = "idcliente", nullable = false)
     private Integer idcliente;
-    @Size(max = 45)
-    @Column(name = "nombre")
+//    @Size(max = 100)
+    @Column(name = "nombre", length = 100)
     private String nombre;
-    @Size(max = 45)
-    @Column(name = "direccion")
+//    @Size(max = 100)
+    @Column(name = "direccion", length = 100)
     private String direccion;
-    @Size(max = 45)
-    @Column(name = "correo")
+//    @Size(max = 100)
+    @Column(name = "correo", length = 100)
     private String correo;
-    @Size(max = 45)
-    @Column(name = "telefono")
+//    @Size(max = 45)
+    @Column(name = "telefono",length = 45)
     private String telefono;
-    @Size(max = 45)
-    @Column(name = "tipo")
+//    @Size(max = 45)
+    @Column(name = "tipo",length = 45)
     private String tipo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
     private List<Deuda> deudaList;

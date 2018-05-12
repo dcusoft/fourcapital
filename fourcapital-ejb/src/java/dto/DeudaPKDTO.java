@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package dto;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -16,21 +16,16 @@ import javax.validation.constraints.NotNull;
  * @author Usuario
  */
 @Embeddable
-public class DeudaPK implements Serializable {
+public class DeudaPKDTO implements Serializable {
 
-    @Basic(optional = false)
-//    @NotNull
-    @Column(name = "iddeuda", nullable = false)
+    
     private int iddeuda;
-    @Basic(optional = false)
-//    @NotNull
-    @Column(name = "cliente_idcliente", nullable = false)
     private int clienteIdcliente;
 
-    public DeudaPK() {
+    public DeudaPKDTO() {
     }
 
-    public DeudaPK(int iddeuda, int clienteIdcliente) {
+    public DeudaPKDTO(int iddeuda, int clienteIdcliente) {
         this.iddeuda = iddeuda;
         this.clienteIdcliente = clienteIdcliente;
     }
@@ -62,10 +57,10 @@ public class DeudaPK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DeudaPK)) {
+        if (!(object instanceof DeudaPKDTO)) {
             return false;
         }
-        DeudaPK other = (DeudaPK) object;
+        DeudaPKDTO other = (DeudaPKDTO) object;
         if (this.iddeuda != other.iddeuda) {
             return false;
         }
